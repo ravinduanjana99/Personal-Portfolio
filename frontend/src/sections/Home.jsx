@@ -37,7 +37,7 @@ const Home = () => {
           <button
             className="resume-button"
             onClick={() => {
-              window.open("http://localhost:4000/resume", "_blank");
+              window.open("https://personal-portfolio-production-7db0.up.railway.app/resume", "_blank");
             }}
           >
             Download Resume
