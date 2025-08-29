@@ -37,12 +37,15 @@ const Home = () => {
           <button
           className="resume-button"
           onClick={() => {
-            // Directly open the resume.pdf from the public folder
-            window.open("/resume.pdf", "_blank");
+            const link = document.createElement("a");
+            link.href = "/resume.pdf";  // path to your PDF in public folder
+            link.download = "resume.pdf"; // filename for download
+            link.click();
           }}
         >
           Download Resume
         </button>
+
 
           <button
           className="resume-button"

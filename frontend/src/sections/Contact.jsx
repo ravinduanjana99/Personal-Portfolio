@@ -25,9 +25,9 @@ const Contact = () => {
     const form = e.target;
 
     // Replace these with your EmailJS credentials
-    const serviceID = "YOUR_SERVICE_ID";
-    const templateID = "YOUR_TEMPLATE_ID";
-    const publicKey = "YOUR_PUBLIC_KEY";
+    const serviceID = "service_rjvpm5l";
+    const templateID = "template_x2mzq98";
+    const publicKey = "hllOXVbJRVCHWuwBo";
 
     try {
       await emailjs.sendForm(serviceID, templateID, form, publicKey);
