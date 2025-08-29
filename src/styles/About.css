@@ -1,0 +1,84 @@
+#about {
+  scroll-margin-top: 7rem;
+  margin-top: 2rem;
+}
+
+.about-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  gap: 5rem;
+  margin-top: 7rem;
+  flex-wrap: wrap;
+}
+
+.about-image {
+  width: 20rem;
+  height: 25rem;
+  border-radius: 20px;
+  max-width: 100%;
+  height: auto;
+}
+
+.about-text {
+  font-size: 1.2rem;
+  width: 20rem;
+  line-height: 2rem;
+  font-weight: 300;
+}
+
+.media-icons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.media-icon {
+  height: 2rem;
+  width: 2rem;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* For tablets and below */
+@media (max-width: 768px) {
+  #about {
+    margin-top: -6rem; 
+  }
+  
+  .about-content {
+    gap: 3rem;
+  }
+
+  .about-image {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .about-text {
+    font-size: 1rem;
+    width: 12rem;
+    line-height: 1.5rem;
+  }
+}
+
+/* For Mobile devices */
+@media (max-width: 480px) {
+  .about-content {
+    gap: 2rem;
+    flex-direction: column;
+  }
+
+  .about-image {
+    width: 14rem;
+    height: 13rem;
+  }
+
+  .about-text {
+    font-size: 0.8rem;
+    width: 90%;
+    line-height: 1.4rem;
+    text-align: center;
+  }
+}

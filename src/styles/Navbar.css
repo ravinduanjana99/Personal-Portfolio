@@ -1,0 +1,123 @@
+.navbar {
+  width: 90%;
+  background-color: transparent;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  position: fixed;
+  margin-top: 1rem; 
+  border-radius: 50px;
+  height: 4rem;
+  left: 50%; 
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 0 1rem;
+
+  /* Animation */
+  opacity: 0;
+  animation: navbarSlideUp 1s ease forwards;
+}
+
+@keyframes navbarSlideUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.navbar-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, text-shadow 0.7s ease;
+}
+
+.navbar-links li a:hover {
+  color: white;
+  text-shadow:
+    0 0 5px white,
+    0 0 10px white,
+    0 0 15px white;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  z-index: 1100;
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background-color: white;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Responsive CSS */
+@media (max-width: 768px) {
+ 
+.hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: auto;
+}
+
+.navbar-links {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: black;
+  backdrop-filter: blur(60px);
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+}
+
+  .navbar-links.open {
+    max-height: 500px;
+  }
+
+  .navbar-links li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+}

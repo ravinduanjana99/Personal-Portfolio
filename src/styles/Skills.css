@@ -1,0 +1,77 @@
+#skills {
+  scroll-margin-top: 15rem;
+  margin-top: 20rem;
+}
+
+.about-content {
+  display: flex;
+  gap: 6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.skills-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  margin-top: 10rem;
+}
+
+.skills-track {
+  display: inline-flex;
+  animation: scroll-left 20s linear infinite;
+}
+
+.skills-icon {
+  width: 7rem;
+  height: 7rem;
+  object-fit: contain;
+  object-position: center;
+  margin-right: 2rem;
+}
+
+/* Animation keyframes remain unchanged */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* For tablets and below */
+@media (max-width: 768px) {
+  .about-content {
+    gap: 4rem;
+  }
+
+  .skills-icon {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 1.5rem;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 480px) {
+  #skills {
+    margin-top: 2rem; 
+  }
+  
+  .about-content {
+    gap: 2rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skills-icon {
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1rem;
+  }
+
+  .skills-container {
+    margin-top: 5rem;
+  }
+}

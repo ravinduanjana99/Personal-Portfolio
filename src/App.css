@@ -1,38 +1,91 @@
-.App {
-  text-align: center;
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to left, #0a0124, #000000, #0c002e, #000000);
+    margin: 0;
+    padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+    scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar-link-section {
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 0.1;
+    /* Stronger Gradient */
+    background: linear-gradient(90deg, yellow 0%, red 50%, blue 100%);
+    background-size: 300%; /* make gradient bigger */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    /* Optional animation */
+    animation: gradientMove 3s linear infinite;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Gradient animation */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-.App-link {
-  color: #61dafb;
+
+
+.background-icon {
+    position: fixed;        
+    top: 0;
+    left: 0;
+    width: 100%;            
+    height: 100%;           
+    object-fit: cover;      
+    z-index: -1;           
+    pointer-events: none;  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.content section {
+    height: 100vh;        
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+    .navbar-link-section {
+        font-size: 2.5rem;
+    }
+
+    .content section {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-link-section {
+        font-size: 2rem;
+        line-height: 1;
+    }
+
+    .content section {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar-link-section {
+        font-size: 1.5rem;
+    }
+
+    .content section {
+        font-size: 1.2rem;
+    }
 }

@@ -1,0 +1,94 @@
+import React, { useState } from 'react';
+import '../App.css';
+import '../styles/Contact.css';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
+const Contact = () => {
+  const [status, setStatus] = useState("");
+
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus("Sending...");
+
+    const form = e.target;
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+    };
+
+    try {
+      const res = await fetch("http://localhost:4000/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setStatus("✅ Message sent successfully!");
+        form.reset();
+      } else {
+        setStatus("❌ Failed to send. Try again.");
+      }
+    } catch (err) {
+      setStatus("❌ Error sending message.");
+    }
+  }
+
+  return (
+    <section id="contact" ref={ref}>
+      <motion.div
+        className="contact-section"
+        variants={fadeInUp}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+      >
+        <span className="navbar-link-section">CONTACT ME</span>
+        <div className="contact-container">
+          <div className="left-form">
+            <form onSubmit={handleSubmit} className="contact-form">
+              <span className='input-title'>Name :</span>
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                required
+              />
+              <span className='input-title'>Your Email :</span>
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
+              <span className='input-title'>Your Message :</span>
+              <textarea
+                name="message"
+                placeholder="Type Here"
+                required
+              ></textarea>
+              <button type="submit">Send</button>
+              {status && <p className="status">{status}</p>}
+            </form>
+          </div>
+          <div className="right-image">
+            <img src="/images/mail-photo.png" className="mail-icon" alt="Mail" />
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
+};
+
+export default Contact;
