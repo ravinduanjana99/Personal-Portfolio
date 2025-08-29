@@ -3,7 +3,7 @@ import '../App.css';
 import '../styles/Contact.css';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import emailjs from '@emailjs/browser'; // Import EmailJS
+import emailjs from '@emailjs/browser'; 
 
 const Contact = () => {
   const [status, setStatus] = useState("");
