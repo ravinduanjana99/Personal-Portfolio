@@ -2,23 +2,25 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
+const path = require("path");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Setup transporter
+// Use environment port for cloud deployment, fallback to 4000 locally
+const PORT = process.env.PORT || 4000;
+
+// Setup transporter for Gmail
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.EMAIL_USER, // your Gmail
-    pass: process.env.EMAIL_PASS, // your Gmail app password
+    pass: process.env.EMAIL_PASS, // Gmail app password
   },
 });
 
-const path = require("path");
-
-// Serve resume
+// Route to serve resume PDF
 app.get("/resume", (req, res) => {
   const filePath = path.join(__dirname, "resume", "resume.pdf");
   res.download(filePath, "Ravindu_Resume.pdf", (err) => {
@@ -29,10 +31,7 @@ app.get("/resume", (req, res) => {
   });
 });
 
-
-// API endpoint
-
-
+// Contact form API
 app.post("/send", async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -42,9 +41,9 @@ app.post("/send", async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: process.env.EMAIL_USER, // must be your Gmail
-      to: process.env.EMAIL_USER,   // where you want to receive the message
-      replyTo: email,               // user’s typed email
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,   // receive email
+      replyTo: email,               // user's email
       subject: `📩 Message from ${name}`,
       text: `
 You have a new message from your portfolio contact form:
@@ -62,5 +61,5 @@ Message: ${message}
   }
 });
 
-// Start server
-app.listen(4000, () => console.log("✅ Server running on http://localhost:4000"));
+// Start the server
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
