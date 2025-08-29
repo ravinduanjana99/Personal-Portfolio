@@ -20,6 +20,13 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+//Healthcheck
+app.get("/", (req, res) => {
+  res.status(200).send("Server is running!");
+});
+
+
+
 // Route to serve resume PDF
 app.get("/resume", (req, res) => {
   const filePath = path.join(__dirname, "resume", "resume.pdf");
