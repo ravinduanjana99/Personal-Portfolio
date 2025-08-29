@@ -3,6 +3,7 @@ import '../App.css';
 import '../styles/Contact.css';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import emailjs from '@emailjs/browser'; // Import EmailJS
 
 const Contact = () => {
   const [status, setStatus] = useState("");
@@ -22,28 +23,19 @@ const Contact = () => {
     setStatus("Sending...");
 
     const form = e.target;
-    const data = {
-      name: form.name.value,
-      email: form.email.value,
-      message: form.message.value,
-    };
+
+    // Replace these with your EmailJS credentials
+    const serviceID = "YOUR_SERVICE_ID";
+    const templateID = "YOUR_TEMPLATE_ID";
+    const publicKey = "YOUR_PUBLIC_KEY";
 
     try {
-      const res = await fetch("https://personal-portfolio-production-7db0.up.railway.app/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-
-
-      if (res.ok) {
-        setStatus("✅ Message sent successfully!");
-        form.reset();
-      } else {
-        setStatus("❌ Failed to send. Try again.");
-      }
+      await emailjs.sendForm(serviceID, templateID, form, publicKey);
+      setStatus("✅ Message sent successfully!");
+      form.reset();
     } catch (err) {
-      setStatus("❌ Error sending message.");
+      console.error(err);
+      setStatus("❌ Failed to send. Try again.");
     }
   }
 

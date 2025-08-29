@@ -35,13 +35,15 @@ const Home = () => {
           </div>
           <div className="buttons">
           <button
-            className="resume-button"
-            onClick={() => {
-              window.open("https://personal-portfolio-production-7db0.up.railway.app/resume", "_blank");
-            }}
-          >
-            Download Resume
-          </button>
+          className="resume-button"
+          onClick={() => {
+            // Directly open the resume.pdf from the public folder
+            window.open("/resume.pdf", "_blank");
+          }}
+        >
+          Download Resume
+        </button>
+
           <button
           className="resume-button"
           onClick={() => {
